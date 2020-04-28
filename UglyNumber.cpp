@@ -22,14 +22,9 @@ bool isUgly(int n)
         return false;
     }
 }
+// Time Complexity O(n) and Space Complexity O(1)
 int uglyNumber(int  n)
 {
-    int *ar=new int[n];
-    for(int i=0;i<n;i++)
-    {
-        ar[i]=0;
-    }
-    ar[0]=1;
     int c=0;
     int i=0;
     while(c!=n)
@@ -44,6 +39,7 @@ int uglyNumber(int  n)
     return i;
 
 }
+//Time Complexity O(n) and Time Complexity O(n)
 int uglyNumberDp(int n)
 {
     int *ar=new int[n];
