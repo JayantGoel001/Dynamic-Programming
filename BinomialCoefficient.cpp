@@ -36,6 +36,24 @@ int binoCoffDP(int n,int r)
     }
     return ar[n][r];
 }
+//Time complexity is O(n*k) And Space Complexity is O(k)
+int binoCoffDP2(int n,int r)
+{
+    int *ar=new int[r+1];
+    for(int i=0;i<=r;i++)
+    {
+        ar[i]=0;
+    }
+    ar[0]=1;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=min(i,r);j>0;j--)
+        {
+            ar[j]+=ar[j-1];
+        }
+    }
+    return ar[r];
+}
 int main()
 {
     int n,r;
@@ -43,5 +61,6 @@ int main()
     cin>>n;
     cin>>r;
     cout<<"The Binomial Coefficient using recursion of C("<<n<<","<<r<<") is : "<<binoCoff(n,r)<<endl;
-    cout<<"The Binomial Coefficient using DP of C("<<n<<","<<r<<") is : "<<binoCoffDP(n,r);
+    cout<<"The Binomial Coefficient using DP of C("<<n<<","<<r<<") is : "<<binoCoffDP(n,r)<<endl;
+    cout<<"The Binomial Coefficient using DP2 of C("<<n<<","<<r<<") is : "<<binoCoffDP2(n,r);
 }
