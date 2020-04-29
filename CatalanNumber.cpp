@@ -48,6 +48,23 @@ long long int catNumDP(int n)
     }
     return ar[n];
 }
+//Time complexity is O(n^2) And Space Complexity is O(n)
+long long int catNumRecDp(int num)
+{
+    long long int *ar=new long long int[num+1];
+    ar[0]=1;
+    long long int sum=0;
+    for(int n=1;n<=num;n++)
+    {
+        sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=ar[i]*ar[n-i-1];
+        }
+        ar[n]=sum;
+    }
+    return ar[num];
+}
 int main()
 {
     int n;
@@ -56,4 +73,5 @@ int main()
     cout<<"Catalan Number through Formula : "<<catNum(n)<<endl;
     cout<<"Catalan Number through Recursion : "<<catNumRec(n)<<endl;
     cout<<"Catalan Number through DP : "<<catNumDP(n)<<endl;
+    cout<<"Catalan Number through Recursion DP : "<<catNumRecDp(n)<<endl;
 }
