@@ -54,6 +54,24 @@ int binoCoffDP2(int n,int r)
     }
     return ar[r];
 }
+//Time Complexity is O(n*k) And Space complexity is O(n)
+int binoCoffDP3(int n,int r,int **dp)
+{
+    if(dp[n][r]!=-1)
+    {
+        return dp[n][r];
+    }
+    if(r==n || r==0)
+    {
+        dp[n][r]=1;
+        return dp[n][r];
+    }
+    else
+    {
+        dp[n][r]=binoCoffDP3(n-1,r-1,dp)+binoCoffDP3(n-1,r,dp);
+        return dp[n][r];
+    }
+}
 int main()
 {
     int n,r;
@@ -62,5 +80,19 @@ int main()
     cin>>r;
     cout<<"The Binomial Coefficient using recursion of C("<<n<<","<<r<<") is : "<<binoCoff(n,r)<<endl;
     cout<<"The Binomial Coefficient using DP of C("<<n<<","<<r<<") is : "<<binoCoffDP(n,r)<<endl;
-    cout<<"The Binomial Coefficient using DP2 of C("<<n<<","<<r<<") is : "<<binoCoffDP2(n,r);
+    cout<<"The Binomial Coefficient using DP2 of C("<<n<<","<<r<<") is : "<<binoCoffDP2(n,r)<<endl;
+    int **dp=new int*[n+1];
+    for(int i=0;i<=n;i++)
+    {
+        dp[i]=new int[r+1];
+    }
+    for(int i=0;i<=n;i++)
+    {
+        for(int j=0;j<=r;j++)
+        {
+            dp[i][j]=-1;
+        }
+    }
+    dp[0][0]=1;
+    cout<<"The Binomial Coefficient using DP3 of C("<<n<<","<<r<<") is : "<<binoCoffDP3(n,r,dp);
 }
