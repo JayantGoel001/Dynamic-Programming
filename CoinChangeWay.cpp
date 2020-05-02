@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+//Time complexity is exponential And Space Complexity is O(n)
+int coinWay(int *ar,int n,int sum)
+{
+    if(sum==0)
+    {
+        return 1;
+    }
+    if(sum<0)
+    {
+        return 0;
+    }
+    if(n<=0 && sum>0)
+    {
+        return 0;
+    }
+    return coinWay(ar,n-1,sum)+coinWay(ar,n,sum-ar[n-1]);
+}
+//Time complexity is O(n^2) And Space Complexity is O(n^2)
+int coinWayDP(int *ar,int n,int sum)
+{
+    int **dp=new int*[n+1];
+    for(int i=0;i<=n;i++)
+    {
+        dp[i]=new int[sum+1];
+    }
+    for(int i=0;i<=n;i++)
+    {
+        for(int j=0;j<=sum;j++)
+        {
+            dp[i][j]=0;
+        }
+    }
+    for(int i=0;i<=n;i++)
+    {
+        dp[i][0]=1;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=sum;j++)
+        {
+            if(j<ar[i-1])
+            {
+                dp[i][j]=dp[i-1][j];
+            }
+            else
+            {
+                dp[i][j]=dp[i-1][j]+dp[i][j-ar[i-1]];
+            }
+        }
+    }
+    return dp[n][sum];
+}
+int main()
+{
+    int n;
+    cout<<"Enter the value of n:\n";
+    cin>>n;
+    int *ar=new int[n];
+    cout<<"\nEnter the value of array:\n";
+    for(int i=0;i<n;i++)
+    {
+        cin>>ar[i];
+    }
+    int sum;
+    cout<<"\nEnter the sum to be searched :\n";
+    cin>>sum;
+    cout<<"Number of ways through Recursion = "<<coinWay(ar,n,sum)<<endl;
+    cout<<"Number of ways through DP = "<<coinWayDP(ar,n,sum)<<endl;
+}
