@@ -36,11 +36,12 @@ bool subSetSumDP(int *ar,int n,int sum)
     {
         dp[i][0]=true;
     }
+
     for(int i=1;i<=n;i++)
     {
         for(int j=1;j<=sum;j++)
         {
-            if(j>ar[i-1])
+            if(j<ar[i-1])
             {
                 dp[i][j]=dp[i-1][j];
             }
@@ -51,6 +52,41 @@ bool subSetSumDP(int *ar,int n,int sum)
         }
     }
     return dp[n][sum];
+}
+
+
+//Time Complexity is O(n*sum) And Space Complexity is O(sum)
+bool subSetSumDP2(int *ar,int n,int sum)
+{
+    bool **dp=new bool*[2];
+    for(int i=0;i<2;i++)
+    {
+        dp[i]=new bool[sum+1];
+    }
+    for(int i=0;i<=sum;i++)
+    {
+        dp[0][i]=false;
+    }
+    dp[0][0]=true;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=0;j<=sum;j++)
+        {
+            if(j==0)
+            {
+                dp[i%2][j]=true;
+            }
+            else if(ar[i-1]<=j)
+            {
+                dp[i%2][j]=dp[(i-1)%2][j]||dp[(i-1)%2][j-ar[i-1]];
+            }
+            else
+            {
+                dp[i%2][j]=dp[(i-1)%2][j];
+            }
+        }
+    }
+    return dp[n%2][sum];
 }
 int main()
 {
@@ -68,19 +104,27 @@ int main()
     cin>>sum;
     if(subSetSum(ar,n,sum)==true)
     {
-        cout<<"Using Recursion Subset with sum = "<<sum<<" exists.";
+        cout<<"Using Recursion Subset with sum = "<<sum<<" exists."<<endl;
     }
     else
     {
-        cout<<"Using Recursion Subset with sum = "<<sum<<" does not exists.";
+        cout<<"Using Recursion Subset with sum = "<<sum<<" does not exists."<<endl;
     }
     if(subSetSumDP(ar,n,sum)==true)
     {
-        cout<<"Using DP Subset with sum = "<<sum<<" exists.";
+        cout<<"Using DP Subset with sum = "<<sum<<" exists."<<endl;
     }
     else
     {
-        cout<<"Using DP Subset with sum = "<<sum<<" does not exists.";
+        cout<<"Using DP Subset with sum = "<<sum<<" does not exists."<<endl;
+    }
+    if(subSetSumDP2(ar,n,sum)==true)
+    {
+        cout<<"Using DP2 Subset with sum = "<<sum<<" exists."<<endl;
+    }
+    else
+    {
+        cout<<"Using DP2 Subset with sum = "<<sum<<" does not exists."<<endl;
     }
 
 }
