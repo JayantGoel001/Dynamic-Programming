@@ -1,6 +1,7 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
+//Time complexity is O(n^2) And Space Complexity is O(n)
 int ldps(int *ar,int n)
 {
     int *dp=new int[n];
