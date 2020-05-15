@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+//Time complexity is O(n*r) And Space Complexity is O(r)
 int binoCoff(int n,int r,int p)
 {
     if(r>n-r)
