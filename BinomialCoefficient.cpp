@@ -36,7 +36,7 @@ int binoCoffDP(int n,int r)
     }
     return ar[n][r];
 }
-//Time complexity is O(n*k) And Space Complexity is O(k)
+//Time complexity is O(n*r) And Space Complexity is O(r)
 int binoCoffDP2(int n,int r)
 {
     int *ar=new int[r+1];
