@@ -1,13 +1,13 @@
 #include<iostream>
 using namespace std;
-//Time Complexity is O(n^2) and Space Complexity is O(n)
+//Time Complexity is O(n) and Space Complexity is O(n)
 int main()
 {
     int n;
     cout<<"Enter the value of n:\n";
     cin>>n;
-    int *ar=new int[n];
     cout<<"Enter the value of array:\n";
+    int *ar=new int[n];
     for(int i=0;i<n;i++)
     {
         cin>>ar[i];
@@ -19,12 +19,9 @@ int main()
     }
     for(int i=1;i<n;i++)
     {
-        for(int j=0;j<i;j++)
+        if(ar[i-1]<ar[i])
         {
-            if(ar[i]>ar[j] && dp[i]<dp[j]+1)
-            {
-                dp[i]=dp[j]+1;
-            }
+            dp[i]=dp[i-1]+1;
         }
     }
     int maxi=-1;
@@ -35,6 +32,6 @@ int main()
             maxi=dp[i];
         }
     }
-    cout<<"Maximum Increasing Sequence in Array = "<<maxi;
+    cout<<endl<<"Maximum increase in sub Array = "<<maxi;
 
 }
