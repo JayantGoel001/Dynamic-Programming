@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+//Time Complexity is O(n^2) And Space Complexity is O(n^2)
 int cutARod(int *pr,int n)
 {
     int **dp=new int*[n+1];
@@ -28,6 +29,24 @@ int cutARod(int *pr,int n)
     }
     return dp[n][n];
 }
+//Time Complexity is O(n^2) And Space Complexity is O(n)
+int cutARod2(int *pr,int n)
+{
+    int *dp=new int[n+1];
+
+    for(int i=0;i<=n;i++)
+    {
+        dp[i]=0;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=i;j<=n;j++)
+        {
+            dp[j]=max(pr[i-1]+dp[j-i],dp[j]);
+        }
+    }
+    return dp[n];
+}
 int main()
 {
     int n;
@@ -39,5 +58,6 @@ int main()
     {
         cin>>price[i];
     }
-    cout<<"The maximum Value Obtained = "<<cutARod(price,n);
+    cout<<"The maximum Value Obtained in O(n^2) = "<<cutARod(price,n);
+    cout<<"The maximum Value Obtained in O(n)   = "<<cutARod2(price,n);
 }
