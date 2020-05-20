@@ -1,8 +1,37 @@
 #include<iostream>
+#include<vector>
 using namespace std;
-printSubset(int *ar,int n,int sum,vector<int> p,int **dp)
+void display(vector<int>& p)
 {
-
+    for(int i=0;i<p.size();i++)
+    {
+        cout<<p[i]<<" ";
+    }
+    cout<<endl;
+}
+void printSubset(int *ar,int i,int sum,vector<int> &p,bool **dp)
+{
+    if(i==0 && sum!=0 && dp[0][sum])
+    {
+        p.push_back(ar[i-1]);
+        display(p);
+        return;
+    }
+    if(i==0 && sum==0)
+    {
+        display(p);
+        return;
+    }
+    if(dp[i-1][sum])
+    {
+        vector<int> b=p;
+        printSubset(ar,i-1,sum,b,dp);
+    }
+    if(sum>=ar[i-1] && dp[i-1][sum-ar[i-1]])
+    {
+        p.push_back(ar[i-1]);
+        printSubset(ar,i-1,sum-ar[i-1],p,dp);
+    }
 }
 void PerfectSum(int *ar,int n,int sum)
 {
@@ -30,23 +59,15 @@ void PerfectSum(int *ar,int n,int sum)
             }
             else
             {
-                dp[i][j]=dp[i-1][j-ar[i-1]];
+                dp[i][j]=dp[i-1][j]||dp[i-1][j-ar[i-1]];
             }
         }
-    }
-    for(int i=0;i<=n;i++)
-    {
-        for(int j=0;j<=sum;j++)
-        {
-            cout<<dp[i][j]<<" ";
-        }
-        cout<<endl;
     }
     if(dp[n][sum]==true)
     {
         vector<int> p;
-        cout<<"The subset with sum = "<<sum<<endl;
-        printSubsets(ar,n-1,sum,p,dp);
+        cout<<"The subset with sum = "<<sum<<" are "<<endl;
+        printSubset(ar,n,sum,p,dp);
     }
     else
     {
