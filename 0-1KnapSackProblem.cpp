@@ -99,6 +99,7 @@ int knapsackDPU(int *value,int *weight,int n,int W)
     }
     return dp[n][W];
 }
+//Time Complexity is O(n*W) And Space Complexity is O(W)
 int knapsackDP2(int *value,int *weight,int n,int W)
 {
     int **dp=new int*[2];
