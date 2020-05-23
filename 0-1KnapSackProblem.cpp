@@ -99,6 +99,26 @@ int knapsackDPU(int *value,int *weight,int n,int W)
     }
     return dp[n][W];
 }
+//Time Complexity is O(n*W) And Space Complexity is O(w)
+int knapsackDPU2(int *value,int *weight,int n,int W)
+{
+    int *dp=new int[W+1];
+    for(int j=0;j<=W;j++)
+    {
+        dp[j]=0;
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<=W ;j++)
+        {
+            if(weight[i]<=j)
+            {
+                dp[j]=max(dp[j],value[i]+dp[j-weight[i]]);
+            }
+        }
+    }
+    return dp[W];
+}
 //Time Complexity is O(n*W) And Space Complexity is O(2*W)
 int knapsackDP2(int *value,int *weight,int n,int W)
 {
@@ -131,6 +151,7 @@ int knapsackDP2(int *value,int *weight,int n,int W)
     }
     return dp[n%2][W];
 }
+//Time Complexity is O(n*W) And Space Complexity is O(W)
 int knapsackDP3(int *value,int *weight,int n,int W)
 {
     int *dp=new int[W+1];
@@ -169,7 +190,8 @@ int main()
     cin>>W;
     cout<<"Maximum value obtained through recursion is "<<knapsackRec(value,weight,n,W)<<endl;
     cout<<"Maximum value obtained through DP in O(n*W) is "<<knapsackDP(value,weight,n,W)<<endl;
-    cout<<"Maximum value obtained through DP(Unbounded) is "<<knapsackDPU(value,weight,n,W)<<endl;
+    cout<<"Maximum value obtained through DP(Unbounded) in O(n*W) is "<<knapsackDPU(value,weight,n,W)<<endl;
+    cout<<"Maximum value obtained through DP(Unbounded) in O(W) is "<<knapsackDPU2(value,weight,n,W)<<endl;
     cout<<"Maximum value obtained through DP in O(2*W) is "<<knapsackDP2(value,weight,n,W)<<endl;
     cout<<"Maximum value obtained through DP in O(W) is "<<knapsackDP3(value,weight,n,W)<<endl;
 }
