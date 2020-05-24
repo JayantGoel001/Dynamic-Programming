@@ -32,6 +32,37 @@ int lcsDP(string s1,string s2)
             }
         }
     }
+    vector<char> v;
+    int pivot=dp[x][y];
+    int i=x;
+    int j=y;
+    while(true)
+    {
+        if(i==0 || j==0)
+        {
+            break;
+        }
+        if(s1[i-1]==s2[j-1])
+        {
+            i-=1;
+            j-=1;
+            v.push_back(s1[i]);
+        }
+        else if(dp[i-1][j]>dp[i][j-1])
+        {
+            i--;
+        }
+        else
+        {
+            j--;
+        }
+    }
+    cout<<"Longest Common Sequence is : ";
+    for(int i=dp[x][y]-1;i>=0;i--)
+    {
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
     return dp[x][y];
 }
 //Time Complexity is O(x*y) And Space Complexity is O(y)
