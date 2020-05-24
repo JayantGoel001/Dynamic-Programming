@@ -40,5 +40,11 @@ int main()
     cin>>str;
     cout<<"Enter the value of string 2:\n";
     cin>>str2;
-    cout<<"Length of Longest Common Sequence in both string is : "<<lcsDP(str,str2)<<endl;
+    string revstr=str;
+    string revstr2=str2;
+    reverse(revstr.begin(),revstr.end());
+    reverse(revstr2.begin(),revstr2.end());
+    cout<<"Length of Longest Common Sequence in string "<<str<<" and "<<str2<<" is : "<<lcsDP(str,str2)<<endl;
+    cout<<"Length of Longest Common Sequence in string "<<str<<" and "<<revstr<<" is : "<<lcsDP(str,revstr)/2<<endl;
+    cout<<"Length of Longest Common Sequence in string "<<str2<<" and "<<revstr2<<" is : "<<lcsDP(str2,revstr2)/2<<endl;
 }
