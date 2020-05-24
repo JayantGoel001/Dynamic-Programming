@@ -19,19 +19,46 @@ int matrixChainOrder(int *mat,int i,int j)
     }
     return mini;
 }
+void printPara(int i,int j,int **kar,char &name)
+{
+    if(i==j)
+    {
+        cout<<name++;
+        return;
+    }
+    cout<<"(";
+    printPara(i,kar[i][j],kar,name);
+    printPara(kar[i][j]+1,j,kar,name);
+    cout<<")";
+}
+void printPara2(int i,int j,int **m,char &name)
+{
+    if(i==j)
+    {
+        cout<<name++;
+        return;
+    }
+    cout<<"(";
+    printPara(i,m[i][j],m,name);
+    printPara(m[i][j]+1,j,m,name);
+    cout<<")";
+}
 //Time Complexity is O(n^3) And Space Complexity is O(n^2)
 int matrixChainOrderDP(int *mat,int n)
 {
     int **m=new int*[n];
+    int **kar=new int*[n];
     for(int i=0;i<n;i++)
     {
         m[i]=new int[n];
+        kar[i]=new int[n];
     }
     for(int i=0;i<n;i++)
     {
         for(int j=0;j<n;j++)
         {
             m[i][j]=0;
+            kar[i][j]=0;
         }
     }
     for(int l=1;l<n-1;l++)
@@ -46,10 +73,24 @@ int matrixChainOrderDP(int *mat,int n)
                 if(x<m[i][j])
                 {
                     m[i][j]=x;
+                    kar[i][j]=k;
+                    //another approach
+                    m[j][i]=k;
+                    //another approach
                 }
             }
         }
     }
+    cout<<"Matrix Multiplication is Given as :\n";
+    char name='A';
+    printPara(1,n-1,kar,name);
+    cout<<endl;
+    //another approach
+    cout<<"Matrix Multiplication is Given as :\n";
+    name='A';
+    printPara2(1,n-1,m,name);
+    cout<<endl;
+    //another approach
     return m[1][n-1];
 }
 int main()
@@ -64,5 +105,5 @@ int main()
         cin>>mat[i];
     }
     cout<<"Minimum number of multiplication Using Recurrence are ="<<matrixChainOrder(mat,1,n-1)<<endl;
-    cout<<"Minimum number of multiplication using DP are ="<<matrixChainOrderDP(mat,n);
+    cout<<"Minimum number of multiplication using DP in O(n^3) are ="<<matrixChainOrderDP(mat,n)<<endl;
 }
