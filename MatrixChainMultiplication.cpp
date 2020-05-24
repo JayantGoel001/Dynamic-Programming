@@ -31,7 +31,7 @@ void printPara(int i,int j,int **kar,char &name)
     printPara(kar[i][j]+1,j,kar,name);
     cout<<")";
 }
-void printPara2(int i,int j,int **m,char &name)
+void printPara2(int i,int j,int **kar,char &name)
 {
     if(i==j)
     {
@@ -39,8 +39,8 @@ void printPara2(int i,int j,int **m,char &name)
         return;
     }
     cout<<"(";
-    printPara(i,m[i][j],m,name);
-    printPara(m[i][j]+1,j,m,name);
+    printPara2(i,kar[j][i],kar,name);
+    printPara2(kar[j][i]+1,j,kar,name);
     cout<<")";
 }
 //Time Complexity is O(n^3) And Space Complexity is O(n^2)
