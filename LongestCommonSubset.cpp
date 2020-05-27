@@ -6,10 +6,6 @@ int lcsDP(int ***dp,string s1,int l,int r,int flag)
     {
         return 0;
     }
-    if(l==0)
-    {
-        return 0;
-    }
     if(dp[l][r][flag]!=-1)
     {
         return dp[l][r][flag];
