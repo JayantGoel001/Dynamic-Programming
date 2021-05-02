@@ -12,7 +12,12 @@ ll solveGridTraveler(int n,int m,map<pair<int,int>,ll> &mp){
     if(mp.count(make_pair(n,m))!=0){
         return mp[make_pair(n,m)];
     }
+    if(mp.count(make_pair(m,n))!=0){
+        return mp[make_pair(m,n)];
+    }
     mp[make_pair(n,m)] = solveGridTraveler(n-1,m,mp) + solveGridTraveler(n,m-1,mp);
+    mp[make_pair(m,n)] = mp[make_pair(n,m)];
+
     return mp[make_pair(n,m)];
 }
 int main(){
