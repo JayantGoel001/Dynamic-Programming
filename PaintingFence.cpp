@@ -16,7 +16,7 @@ int paintFence(int n,int k)
 //Time Complexity is O(n) And Space Complexity is O(1)
 int paintFence2(int n,int k)
 {
-    int same=0;
+    int same;
     int diff=k;
     int total=k;
     int mod97=pow(10,9)+7;

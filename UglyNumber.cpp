@@ -30,10 +30,9 @@ int uglyNumber(int  n)
     while(c!=n)
     {
         i++;
-        if(isUgly(i)==true)
-        {
-            c++;
-        }
+        if (!isUgly(i))
+            continue;
+        c++;
 
     }
     return i;

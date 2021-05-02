@@ -68,7 +68,7 @@ int knapsackDP(int *value,int *weight,int n,int W)
     return dp[n][W];
 }
 //Time Complexity is O(n*W) And Space Complexity is O(n*w)
-int knapsackDPU(int *value,int *weight,int n,int W)
+int knapsackDPU(int *value,const int *weight,int n,int W)
 {
     int **dp=new int*[n+1];
     for(int i=0;i<=n;i++)
@@ -100,7 +100,7 @@ int knapsackDPU(int *value,int *weight,int n,int W)
     return dp[n][W];
 }
 //Time Complexity is O(n*W) And Space Complexity is O(w)
-int knapsackDPU2(int *value,int *weight,int n,int W)
+int knapsackDPU2(int *value,const int *weight,int n,int W)
 {
     int *dp=new int[W+1];
     for(int j=0;j<=W;j++)
@@ -120,7 +120,7 @@ int knapsackDPU2(int *value,int *weight,int n,int W)
     return dp[W];
 }
 //Time Complexity is O(n*W) And Space Complexity is O(2*W)
-int knapsackDP2(int *value,int *weight,int n,int W)
+int knapsackDP2(int *value,const int *weight,int n,int W)
 {
     int **dp=new int*[2];
     for(int i=0;i<2;i++)
@@ -152,7 +152,7 @@ int knapsackDP2(int *value,int *weight,int n,int W)
     return dp[n%2][W];
 }
 //Time Complexity is O(n*W) And Space Complexity is O(W)
-int knapsackDP3(int *value,int *weight,int n,int W)
+int knapsackDP3(int *value,const int *weight,int n,int W)
 {
     int *dp=new int[W+1];
     for(int i=0;i<=W;i++)

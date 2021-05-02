@@ -63,15 +63,12 @@ void PerfectSum(int *ar,int n,int sum)
             }
         }
     }
-    if(dp[n][sum]==true)
-    {
+    if (!dp[n][sum]) {
+        cout << "There are No subsets with sum " << sum;
+    } else {
         vector<int> p;
-        cout<<"The subset with sum = "<<sum<<" are "<<endl;
-        printSubset(ar,n,sum,p,dp);
-    }
-    else
-    {
-        cout<<"There are No subsets with sum "<<sum;
+        cout << "The subset with sum = " << sum << " are " << endl;
+        printSubset(ar, n, sum, p, dp);
     }
 }
 int main()

@@ -1,5 +1,4 @@
 #include<iostream>
-#include<math.h>
 using namespace std;
 //Time Complexity is O(n) And Space Complexity is O(n)
 int main()

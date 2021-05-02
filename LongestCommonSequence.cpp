@@ -33,7 +33,6 @@ int lcsDP(string s1,string s2)
         }
     }
     vector<char> v;
-    int pivot=dp[x][y];
     int i=x;
     int j=y;
     while(true)
@@ -58,9 +57,9 @@ int lcsDP(string s1,string s2)
         }
     }
     cout<<"Longest Common Sequence is : ";
-    for(int i=dp[x][y]-1;i>=0;i--)
+    for(int a=dp[x][y]-1;a>=0;a--)
     {
-        cout<<v[i]<<" ";
+        cout<<v[a]<<" ";
     }
     cout<<endl;
     return dp[x][y];

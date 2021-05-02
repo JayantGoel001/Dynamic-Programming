@@ -102,29 +102,20 @@ int main()
     int sum;
     cout<<"Enter the value of sum:\n";
     cin>>sum;
-    if(subSetSum(ar,n,sum)==true)
-    {
-        cout<<"Using Recursion Subset with sum = "<<sum<<" exists."<<endl;
+    if (!subSetSum(ar, n, sum)) {
+        cout << "Using Recursion Subset with sum = " << sum << " does not exists." << endl;
+    } else {
+        cout << "Using Recursion Subset with sum = " << sum << " exists." << endl;
     }
-    else
-    {
-        cout<<"Using Recursion Subset with sum = "<<sum<<" does not exists."<<endl;
+    if (!subSetSumDP(ar, n, sum)) {
+        cout << "Using DP Subset with sum = " << sum << " does not exists." << endl;
+    } else {
+        cout << "Using DP Subset with sum = " << sum << " exists." << endl;
     }
-    if(subSetSumDP(ar,n,sum)==true)
-    {
-        cout<<"Using DP Subset with sum = "<<sum<<" exists."<<endl;
-    }
-    else
-    {
-        cout<<"Using DP Subset with sum = "<<sum<<" does not exists."<<endl;
-    }
-    if(subSetSumDP2(ar,n,sum)==true)
-    {
-        cout<<"Using DP2 Subset with sum = "<<sum<<" exists."<<endl;
-    }
-    else
-    {
-        cout<<"Using DP2 Subset with sum = "<<sum<<" does not exists."<<endl;
+    if (!subSetSumDP2(ar, n, sum)) {
+        cout << "Using DP2 Subset with sum = " << sum << " does not exists." << endl;
+    } else {
+        cout << "Using DP2 Subset with sum = " << sum << " exists." << endl;
     }
 
 }
