@@ -1,7 +1,8 @@
 #include <iostream>
 #include <map>
+#define ll long long int
 using namespace std;
-int solveGridTraveler(int n,int m,map<pair<int,int>,int> &mp){
+ll solveGridTraveler(int n,int m,map<pair<int,int>,ll> &mp){
     if (n==0 || m==0){
         return 0;
     }
@@ -18,6 +19,6 @@ int main(){
     cout<<"Enter the value of n and m:\n";
     int n,m;
     cin>>n>>m;
-    map<pair<int,int>,int> mp;
+    map<pair<int,int>,ll> mp;
     cout<<solveGridTraveler(n,m,mp);
 }
