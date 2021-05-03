@@ -21,12 +21,15 @@ bool canSum(int *ar,int n,int sum,map<int,bool> &mp){
     return false;
 }
 int main(){
+    cout<<"Enter The value of n:\n";
     int n;
     cin>>n;
+    cout<<"Enter The value of array:\n";
     int *ar = new int[n];
     for (int i = 0; i < n; ++i) {
         cin>>ar[i];
     }
+    cout<<"Enter The value of sum:\n";
     int sum;
     cin>>sum;
     map<int,bool> mp;
