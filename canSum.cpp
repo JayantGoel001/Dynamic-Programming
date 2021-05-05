@@ -13,9 +13,9 @@ bool canSum(int *ar,int n,int sum,map<int,bool> &mp){
     }
     for (int i = 0; i < n; ++i) {
         int rem = sum-ar[i];
-        mp[rem] = canSum(ar,n,rem,mp);
-        if (mp[rem]){
-            return mp[rem];
+        if (canSum(ar,n,rem,mp)){
+            mp[sum] = true;
+            return mp[sum];
         }
     }
     mp[sum] = false;
