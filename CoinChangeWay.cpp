@@ -54,26 +54,6 @@ int coinWayDP2(const int *ar,int n,int sum){
     }
     return dp[sum];
 }
-//Time Complexity is O(n*sum) and Space Complexity is O(n*sum).
-ll coinWayDP3(const int *ar,int n,int sum,map<int,ll> &mp){
-    if (sum==0){
-        return 0;
-    }
-    if (mp.count(sum)!=0){
-        return mp[sum];
-    }
-    ll res = INT_MAX;
-    for (int i = 0; i < n; ++i) {
-        if (sum>=ar[i]) {
-            ll sub_res = 1+coinWayDP3(ar, n,sum - ar[i], mp);
-            if(sub_res<res){
-                res = sub_res;
-            }
-        }
-    }
-    mp[sum] = res;
-    return mp[sum];
-}
 int main()
 {
     int n;
@@ -81,8 +61,7 @@ int main()
     cin>>n;
     int *ar=new int[n];
     cout<<"\nEnter the value of array:\n";
-    for(int i=0;i<n;i++)
-    {
+    for(int i=0;i<n;i++){
         cin>>ar[i];
     }
     int sum;
@@ -91,6 +70,4 @@ int main()
     cout<<"Number of ways through Recursion = "<<coinWay(ar,n,sum)<<endl;
     cout<<"Number of ways through DP = "<<coinWayDP(ar,n,sum)<<endl;
     cout<<"Number of ways through DP2 = "<<coinWayDP2(ar,n,sum)<<endl;
-    map<int,ll> mp;
-    cout<<"Number of ways through DP3 = "<<coinWayDP3(ar,n,sum,mp)<<endl;
 }
