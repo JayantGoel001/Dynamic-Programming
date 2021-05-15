@@ -1,6 +1,7 @@
 #include<iostream>
 #include <map>
 using namespace std;
+// Time Complexity is O(n*m^2) And Space Complexity is O(m).
 bool canConstruct(string *ar,int n,const string& str,map<string,bool> &mp){
     if (str.empty()){
         return true;
@@ -20,6 +21,24 @@ bool canConstruct(string *ar,int n,const string& str,map<string,bool> &mp){
     mp[str] = false;
     return mp[str];
 }
+// Time Complexity is O(n*m^2) And Space Complexity is O(m).
+bool canConstruct2(string *ar,int n,const string& str){
+    bool dp[str.length()+1];
+    for (int i = 0; i <= str.length(); ++i) {
+        dp[i] = false;
+    }
+    dp[0] = true;
+    for (int i = 1; i <=str.length(); ++i) {
+        if (!dp[i]){
+            for (int j = 0; j < n; ++j) {
+                if (i>=ar[j].length() && str.substr(i-ar[j].length(),ar[j].length())==ar[j] && dp[i-ar[j].length()]){
+                    dp[i] = true;
+                }
+            }
+        }
+    }
+    return dp[str.length()];
+}
 int main(){
     cout<<"Enter The value of n:\n";
     int n;
@@ -33,7 +52,14 @@ int main(){
     string str;
     cin>>str;
     map<string ,bool> mp;
+    cout<<"Using Top Down Approach:\n";
     if (canConstruct(ar,n,str,mp)) {
+        cout << "YES";
+    } else{
+        cout<<"NO";
+    }
+    cout<<"\nUsing Bottom Up Approach:\n";
+    if (canConstruct2(ar,n,str)) {
         cout << "YES";
     } else{
         cout<<"NO";
