@@ -30,9 +30,11 @@ bool canSum2(const int *ar,int n,int sum){
     }
     dp[0] = true;
     for (int i = 1; i <=sum; ++i) {
-        for (int j = 0; j < n; ++j) {
-            if (i>=ar[j] && dp[i]== false){
-                dp[i] = dp[i-ar[j]];
+        if (dp[i]!= true) {
+            for (int j = 0; j < n; ++j) {
+                if (i >= ar[j]) {
+                    dp[i] = dp[i - ar[j]];
+                }
             }
         }
     }
