@@ -2,6 +2,7 @@
 #include <map>
 #define int long long int
 using namespace std;
+// Time Complexity is O(nm) And Space Complexity is O(mn).
 int LCS(const string& str1,const string& str2,int n,int m,map<pair<int,int>,int> &mp){
     if (mp.count(make_pair(n,m))!=0){
         return mp[make_pair(n,m)];
