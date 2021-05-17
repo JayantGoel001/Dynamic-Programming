@@ -92,16 +92,7 @@ int knapsackBU2(int *value,const int *weight,int n,int W){
     return dp[W];
 }
 //Time Complexity is O(n*W) And Space Complexity is O(n*W)
-int UnboundedKnapsackBU(int *value,const int *weight,int n,int W){
-    int **dp = new int*[n+1];
-    for (int i = 0; i <=n; ++i) {
-        dp[i] = new int[W+1];
-    }
-    for (int i = 0; i <=n; ++i) {
-        for (int j = 0; j <=W; ++j) {
-            dp[i][j] = -1;
-        }
-    }
+int UnboundedKnapsackBU(int *value,const int *weight,int n,int W,int **dp){
     for (int i = 0; i <=n; ++i) {
         for (int j = 0; j <=W; ++j) {
             if (i==0 || j==0){
@@ -158,10 +149,36 @@ int32_t main(){
         }
     }
     cout<<"Maximum value obtained through Dynamic Programming Top Down Approach is "<<knapsackTD(value,weight,n,W,dp)<<endl;
-    cout<<"Maximum value obtained through Dynamic Programming Bottom Up Approach is "<<knapsackBU(value,weight,n,W)<<endl;
+    cout<<"Maximum value obtained through Dynamic Programming Bottom Up Approach is \n"<<knapsackBU(value,weight,n,W)<<endl;
     cout<<"Maximum value obtained through Dynamic Programming Bottom Up Approach Optimised-1 is "<<knapsackBU1(value,weight,n,W)<<endl;
     cout<<"Maximum value obtained through Dynamic Programming Bottom Up Approach Optimised-2 is "<<knapsackBU2(value,weight,n,W)<<endl;
 
-    cout<<"Unbounded Maximum value obtained through Dynamic Programming Bottom Up Approach is "<<UnboundedKnapsackBU(value,weight,n,W)<<endl;
+    int **udp = new int*[n+1];
+    for (int i = 0; i <=n; ++i) {
+        udp[i] = new int[W+1];
+    }
+    for (int i = 0; i <=n; ++i) {
+        for (int j = 0; j <=W; ++j) {
+            udp[i][j] = -1;
+        }
+    }
+
+    cout<<"Unbounded Maximum value obtained through Dynamic Programming Bottom Up Approach is "<<UnboundedKnapsackBU(value,weight,n,W,udp)<<endl;
     cout<<"Unbounded Maximum value obtained through Dynamic Programming Bottom Up Approach Optimised-2 is "<<UnboundedKnapsackBU2(value,weight,n,W)<<endl;
+
+    cout<<"Values in 0/1 Knapsack are : \n";
+    int total = dp[n][W];
+    int w = W;
+    vector<pair<int,int>> v;
+    for (int i = n-1; i >=0 ; --i) {
+        if (total!=dp[i][w]){
+            v.emplace_back(weight[i],value[i]);
+            w-=weight[i];
+            total-=value[i];
+        }
+    }
+    for (auto it:v) {
+        cout<<"Weight : "<<it.first<<" Value : "<<it.second<<"\n";
+    }
+    cout<<"\n";
 }
