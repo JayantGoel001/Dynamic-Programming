@@ -36,6 +36,19 @@ int rodCuttingBU(int *price,int n){
     }
     return dp[n][n];
 }
+//Time Complexity is O(n^2) And Space Complexity is O(n)
+int rodCuttingBU2(int *price,int n){
+    int *dp=new int[n+1];
+    for(int i=0;i<=n;i++){
+        dp[i]=0;
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=i;j<=n;j++){
+            dp[j]=max(price[i-1]+dp[j-i],dp[j]);
+        }
+    }
+    return dp[n];
+}
 int32_t main(){
     int n;
     cout<<"Enter the length:\n";
@@ -56,4 +69,5 @@ int32_t main(){
     }
     cout<<"The maximum Value Obtained Using Top Down Approach is : "<<rodCuttingTD(price,n,n,dp)<<"\n";
     cout<<"The maximum Value Obtained Using Bottom Up Approach is : "<<rodCuttingBU(price,n)<<"\n";
+    cout<<"The maximum Value Obtained Using Bottom Up Approach Optimised Approach-2 is : "<<rodCuttingBU2(price,n)<<"\n";
 }
