@@ -44,6 +44,46 @@ int partitionBU(int *cumSum,int n,int k){
     }
     return dp[k][n];
 }
+int getMaximum(int *ar,int n){
+    int maxi = -1;
+    for (int i = 0; i <n; ++i) {
+        maxi = max(maxi,ar[i]);
+    }
+    return maxi;
+}
+int getSum(const int *ar,int n){
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        sum+=ar[i];
+    }
+    return sum;
+}
+int getNumberOfPainters(const int *ar,int n,int x){
+    int painters = 1;
+    int total = 0;
+    for (int i = 0; i < n; ++i) {
+        total += ar[i];
+        if (total>x){
+            painters++;
+            total = ar[i];
+        }
+    }
+    return painters;
+}
+int partitionBS(int *ar,int n,int k){
+    int low = getMaximum(ar,n);
+    int high = getSum(ar,n);
+    while (low<high){
+        int mid = (low + high)/2;
+        int numberOfPainters = getNumberOfPainters(ar,n,mid);
+        if (numberOfPainters<=k){
+            high = mid;
+        } else{
+            low = mid+1;
+        }
+    }
+    return low;
+}
 int32_t main(){
     cout<<"Enter the value of n:\n";
     int n;
@@ -74,4 +114,6 @@ int32_t main(){
     cout<<"Minimum Time Required to get this work done is : "<<partitionTD(cumSum,n,k,dp)<<'\n';
     cout<<"Using Bottom Up Approach\n";
     cout<<"Minimum Time Required to get this work done is : "<<partitionBU(cumSum,n,k)<<'\n';
+    cout<<"Using Binary Search\n";
+    cout<<"Minimum Time Required to get this work done is : "<<partitionBS(ar,n,k)<<'\n';
 }
