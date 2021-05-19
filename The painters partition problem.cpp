@@ -70,6 +70,7 @@ int getNumberOfPainters(const int *ar,int n,int x){
     }
     return painters;
 }
+// Time Complexity is O(N * log(sum(array))) And Space Complexity is O(n).
 int partitionBS(int *ar,int n,int k){
     int low = getMaximum(ar,n);
     int high = getSum(ar,n);
